@@ -12,7 +12,7 @@ def get_by_username(username):
 # 2. Storing whatever response in the appropriate data type: (array)
 # 3. Setting up a MariaDB
 # 4. Updating database with get request response
-# 5. Integrating a pandas/matpllotlib funciton to display our information.
+# 5. Integrating a pandas/matpllotlib funciton to display our information. information
 
 get_by_username('Lho%2311661') # %23
 
