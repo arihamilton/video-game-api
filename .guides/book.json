@@ -1,0 +1,17 @@
+{
+ "name": "VideoGameAPI",
+ "children": [
+  {
+   "title": "Page 1",
+   "id": "16ddf2c8-cf41-75de-c9ba-103b537c1b2a",
+   "pageId": "16ddf2c8-cf41-75de-c9ba-103b537c1b2a",
+   "type": "page"
+  },
+  {
+   "title": "Page 2",
+   "id": "11a0c12a-4ee6-aa36-b423-b85ab965753b",
+   "pageId": "11a0c12a-4ee6-aa36-b423-b85ab965753b",
+   "type": "page"
+  }
+ ]
+}
