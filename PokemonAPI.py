@@ -12,9 +12,9 @@ import pandas as pd
 # Test 1: Lowercase input
 def get_by_ability(ability_name):
   r = requests.get('https://pokeapi.co/api/v2/ability/' + str(ability_name) + '/')
-  response_code = str(r)
+  response_code = r.status_code
   r_dict = r.json()
-  print(r_dict)
+  print(response_code)
 
 # 5. Create a function to get a list of pokemon by their moveset
 # 6. Let the user use the above functions to generate a team and put this information into a new table
