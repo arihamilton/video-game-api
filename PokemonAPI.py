@@ -163,9 +163,11 @@ t2_list = get_pokes_from_json(t2)
 combination = compare_poke_lists(t_list, t2_list)
 
 pokes = get_pokemon_in_list(combination)
+for pokemon in pokes:
+  print(pokemon)
 
+##################### Figure creation, tidy up code later #####################
 
-#fig = go.Figure(data=go.Bar(y=[3, 5, 1, 2, 4])) # create a figure
 poke = pokes[0]
 fig = go.Figure()
 
@@ -176,7 +178,9 @@ for items in stats:
   x.append(items[0])
   y.append(items[1])
 
-fig.add_trace(go.Bar(x=x, y=y))
+colors = ['crimson', 'coral', 'moccasin', 'lightskyblue', 'lightgreen', 'lightpink']  
+  
+fig.add_trace(go.Bar(x=x, y=y, marker_color=colors))
 
 # Add image
 img = poke[2]
