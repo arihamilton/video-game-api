@@ -19,6 +19,7 @@ def init():
     get_request_response = initial_get_request(summoner_name,summoner_region,api_key)
     summoner_id = get_summoner_id(get_request_response)
     graph(champion_mastery(summoner_name,summoner_region,summoner_id,api_key))
+    plt.show()
     
     
 def initial_get_request(_name,_region,_api):
@@ -31,7 +32,6 @@ def get_summoner_id(response):
   
     File = response.json()
     encrypted_summoner_id = File['id']
-    summoner_puuid = File['puuid']
     return encrypted_summoner_id
   
 def get_summoner_puuid(response):
@@ -88,6 +88,5 @@ def name_column(_data_):
                     thing['ChampionName'] = str(things['name'])
     return _data_                 
 
-    
-init()
-plt.show()
+
+
