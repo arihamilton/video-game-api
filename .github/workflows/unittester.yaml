@@ -16,4 +16,4 @@ jobs:
 
       - name: Test with unittest
         run: |
-          python3 -m unittest <name-of-our-unnitest-file>.py
+          python3 -m unittest unittest.py
