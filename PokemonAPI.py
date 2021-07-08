@@ -1,6 +1,7 @@
 import requests
 import requests_cache
 import json
+import os
 import pandas as pd
 import plotly.graph_objects as go
 
@@ -87,7 +88,7 @@ def generate_suggestion(str, list):
         return item
   return -1
       
-def get_user_input():
+def get_team_inputs():
     valid = False
     type_1 = ""
     type_2 = ""
@@ -141,18 +142,14 @@ def get_pokemon_in_list(list):
     poke_list.append([poke_id, poke_name, sprite, stats])
     
   return poke_list
-    
-#a = get_by_ability('torrent')
-#a_list = get_pokes_from_json(a)
-#for pokes in a_list:
-  #print(pokes)
-  
+
+
 TYPES = ['normal', 'fire', 'water', 'grass', 'electric', 'ice', 'fighting', 'poison', 'ground', 
-         'flying', 'psychic', 'bug', 'rock', 'ghost', 'dark', 'dragon', 'steel', 'fairy']
+         'flying', 'psychic', 'bug', 'rock', 'ghost', 'dark', 'dragon', 'steel', 'fairy', 'none']
 
 #requests_cache.install_cache('pokemon_cache', backend='sqlite', expire_after=3600)
 
-user_input = get_user_input()
+user_input = get_team_inputs()
 
 t = get_by_type(user_input[0])
 t_list = get_pokes_from_json(t)
@@ -167,36 +164,45 @@ pokes = get_pokemon_in_list(combination)
 ##################### Figure creation, tidy up code later #####################
 
 def create_chart_from_pokemon(pokemon):
+
     stats = pokemon[3]
     x = []
     y = []
-    
-    for items in stats:
-      x.append(items[0])
-      y.append(items[1])
-
-    colors = ['crimson', 'coral', 'moccasin', 'lightskyblue', 'lightgreen', 'lightpink']  
-
-    fig.add_trace(go.Bar(x=x, y=y, marker_color=colors))
-
-    # Add image
-    img = pokemon[2]
-    fig.add_layout_image(
-        dict(
-            source=img,
-            xref="paper", yref="paper",
-            x=1, y=1.05,
-            sizex=0.2, sizey=0.2,
-            xanchor="right", yanchor="bottom"
-        )
-    )
-
     name = pokemon[1]
-    # Update layout
-    fig.update_yaxes(range=[0, 255])
-    fig.update_layout(title=(name))
-    fig.write_html('' + name + '.html') # export to HTML file
+
+    if not os.path.exists('' + name + '.html'):
+      for items in stats:
+          x.append(items[0])
+          y.append(items[1])
+
+      colors = ['crimson', 'coral', 'moccasin', 'lightskyblue', 'lightgreen', 'lightpink']  
+
+      fig = go.Figure()
+      fig.add_trace(go.Bar(x=x, y=y, marker_color=colors))
+
+      # Add image
+      img = pokemon[2]
+      fig.add_layout_image(
+          dict(
+              source=img,
+              xref="paper", yref="paper",
+              x=1, y=1.05,
+              sizex=0.2, sizey=0.2,
+              xanchor="right", yanchor="bottom"
+          )
+      )
+
+
+      # Update layout
+      fig.update_yaxes(range=[0, 255])
+      fig.update_layout(title=(name))
+      fig.write_html('' + name + '.html') # export to HTML file
 
 for pokemon in pokes:
   print(pokemon)
   create_chart_from_pokemon(pokemon)
+  
+
+#r = requests.get('https://pokeapi.co/api/v2/type/fire')
+#dict = r.json()
+#print(dict)
