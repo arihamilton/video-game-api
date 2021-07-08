@@ -6,8 +6,8 @@ import pandas as pd
 import plotly.graph_objects as go
 from DatabaseManagement import *
 
-#response = requests.get("https://api.open-notify.org/astros.json")
-#https://pokeapi.co/api/v2/ability/{insert pokemon name/id}
+# response = requests.get("https://api.open-notify.org/astros.json")
+# https://pokeapi.co/api/v2/ability/{insert pokemon name/id}
 # 1. Connect to the Pokemon API
 # 2. Create a function to get a list of pokemon with a specific type
 
@@ -15,13 +15,13 @@ from DatabaseManagement import *
 # Test 2: Uppercase input
 # Test 3: Invalid input
 def get_by_type(type_name):
-  type_name = type_name.lower()
-  r = requests.get('https://pokeapi.co/api/v2/type/' + str(type_name) + '/')
-  response_code = r.status_code
-  #print(response_code)
-  if response_code == 200:
-    return r
-  return -1
+    type_name = type_name.lower()
+    r = requests.get('https://pokeapi.co/api/v2/type/' + str(type_name) + '/')
+    response_code = r.status_code
+    # print(response_code)
+    if response_code == 200:
+        return r
+    return -1
 
 
 # 3. Create a function to get a list of pokemon by gender
@@ -55,18 +55,18 @@ def get_by_type(type_name):
 # 5. Create a function to get a list of pokemon by their moveset
 
 def get_pokes_from_json(r):
-  pokemon_list = []
-  try: 
-    dict = r.json()
-    if 'pokemon' in dict:
-      list = dict['pokemon']
-      for pokes in list:
-        if not 'gmax' in str(pokes['pokemon']['name']):
-          pokemon_list.append(pokes['pokemon'])
-  except:
-    print("no pokemon in list")
-  finally:
-    return pokemon_list
+    pokemon_list = []
+    try: 
+      dict = r.json()
+      if 'pokemon' in dict:
+        list = dict['pokemon']
+        for pokes in list:
+          if not 'gmax' in str(pokes['pokemon']['name']):
+            pokemon_list.append(pokes['pokemon'])
+    except:
+      print("no pokemon in list")
+    finally:
+      return pokemon_list
   
 # def get_type(type_name):
 #   type_name = type_name.lower()
