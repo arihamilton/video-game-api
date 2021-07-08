@@ -4,6 +4,7 @@ import json
 import os
 import pandas as pd
 import plotly.graph_objects as go
+from DatabaseManagement import *
 
 #response = requests.get("https://api.open-notify.org/astros.json")
 #https://pokeapi.co/api/v2/ability/{insert pokemon name/id}
@@ -28,28 +29,28 @@ def get_by_type(type_name):
 # Test 1: Lowercase input
 # Test 2: Uppercase input
 # Test 3: Invalid input
-def get_by_gender(gender_name):
-  gender_name = gender_name.lower()
-  r = requests.get('https://pokeapi.co/api/v2/gender/' + str(gender_name) + '/')
-  response_code = r.status_code
-  #print(response_code)
-  if response_code == 200:
-    return r
-  return -1
+# def get_by_gender(gender_name):
+#   gender_name = gender_name.lower()
+#   r = requests.get('https://pokeapi.co/api/v2/gender/' + str(gender_name) + '/')
+#   response_code = r.status_code
+#   #print(response_code)
+#   if response_code == 200:
+#     return r
+#   return -1
 
 # 4. Create a function to get a list of pokemon by their abilities
 
 # Test 1: Lowercase input
 # Test 2: Uppercase input
 # Test 3: Invalid input
-def get_by_ability(ability_name):
-  ability_name = ability_name.lower()
-  r = requests.get('https://pokeapi.co/api/v2/ability/' + str(ability_name) + '/')
-  response_code = r.status_code
-  #print(response_code)
-  if response_code == 200:
-    return r
-  return -1
+# def get_by_ability(ability_name):
+#   ability_name = ability_name.lower()
+#   r = requests.get('https://pokeapi.co/api/v2/ability/' + str(ability_name) + '/')
+#   response_code = r.status_code
+#   #print(response_code)
+#   if response_code == 200:
+#     return r
+#   return -1
 
 # 5. Create a function to get a list of pokemon by their moveset
 
@@ -169,7 +170,7 @@ def get_pokemon_in_list(list):
           type_name = type['name']
           poke_type_list.append(str(type_name))
 
-        poke_list.append([poke_id, poke_name, sprite, poke_type_list])
+        poke_list.append([poke_id, poke_name, sprite, stats, poke_type_list])
     
   return poke_list
 
@@ -217,25 +218,114 @@ def create_chart_from_pokemon(pokemon):
       fig.update_layout(title=(name))
       fig.write_html('' + name + '.html') # export to HTML file
 
-
-def ask_user_for_team():
-  valid = False
+def generate_stat_table(pokemon):
   
-  team_name = input("Enter your team name! ")
+    stats = pokemon[3]
+    x = []
+    y = []
+    name = pokemon[1]
+    table_str = name
+    table_str = table_str + "\n -----------------------------"
+    
+    average = 0
+    for items in stats:
+        formatted_name = "{:<16}".format(items[0])
+        table_str = table_str + "\n" + formatted_name + ' |  ' + str(items[1])
+        average = average + items[1]
+    
+    average = (average / 6)
+    table_str = table_str + "\n------------------------"
+    formatted_avg = "{:<16}".format("average")
+    table_str = table_str + "\n" + formatted_avg + ' |  ' + str(average)
+    
+    return table_str
       
-user_input = get_team_inputs()
+      
+def ask_user_for_team():
+  
+  pokemon_team = []
+  num = 1
+  # User is able to choose 6 pokemon.
+  team_name = input("Enter your team name! ")
+  
+  while num <= 6:
+    
+    current_team_str = ''
+    for poke in pokemon_team:
+      current_team_str = current_team_str + ' | ' + str(poke[1])
+    
+    print("Current team -- " + current_team_str + '\n')
+    
+    num_display = '---------------- \n' + '|  Pokemon ' + str(num) + '   | \n---------------- \n'
+    print(num_display)
+    
+    valid = False
 
-t = get_by_type(user_input[0])
-t_list = get_pokes_from_json(t)
+    while not valid:
+      user_team_input = get_team_inputs()
 
-t2 = get_by_type(user_input[1])
-t2_list = get_pokes_from_json(t2)
+      t = get_by_type(user_team_input[0])
+      t_list = get_pokes_from_json(t)
 
-combination = compare_poke_lists(t_list, t2_list)
+      t2 = get_by_type(user_team_input[1])
+      t2_list = get_pokes_from_json(t2)
 
-pokes = get_pokemon_in_list(combination)
-print(pokes)
+      combination = compare_poke_lists(t_list, t2_list)
+      
+      # If no pokemon have this type combination...
+      if not combination:
+        print("No pokemon have this type combination! Please try again. ")
+      else:
+        
+        # show pokemon stats table and generate stats chart for user comparison
+        # ask the user to choose a pokemon.
+        # add chosen pokemon to list.
+        print("Here is a list of results! Please choose which Pokemon you would like to add to your team. \n")
+        pokes = get_pokemon_in_list(combination)
+        pokemon_names = []
+        # Print out stats chart for each Pokemon
+        for poke in pokes:
+          print(generate_stat_table(poke))
+          print('\n')
+          pokemon_names.append(str(poke[1]))
+        
+        poke_chosen = False
+        
+        while not poke_chosen:
+          selected_poke = input("Enter the Pokemon you would like to select: ")
+          if selected_poke not in pokemon_names:
+            print("Name is not in list of available choices. Please try again.")
+          else:
+            pokemon_team.append([num, selected_poke])
+            poke_chosen = True
+            
+        valid = True
+        num = num + 1
+  
+  df = list_to_df(pokemon_team)
+  create_database_table(df, team_name)
+  save_database_to_file('poke_teams')
+  print('Pokemon team completed! Please check the database to see your team.')
+
+# t = get_by_type(user_input[0])
+# t_list = get_pokes_from_json(t)
+
+# t2 = get_by_type(user_input[1])
+# t2_list = get_pokes_from_json(t2)
+
+# combination = compare_poke_lists(t_list, t2_list)
+
+# pokes = get_pokemon_in_list(combination)
+# print(pokes)
   
 #r = requests.get('https://pokeapi.co/api/v2/type/fire')
 #dict = r.json()
 #print(dict)
+
+# Create database if it doesn't exist
+os.system('mysql-u root -pcodio-e "CREATE DATABASE IF NOT EXISTS '+ 'pokemon_teams' +'; "')
+load_database_from_file('poke_teams')
+engine = createEngine()
+insp = sqlalchemy.inspect(engine)
+
+ask_user_for_team()

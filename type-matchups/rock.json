@@ -1,0 +1,1 @@
+{"double_damage_from": ["fighting", "ground", "steel", "water", "grass"], "double_damage_to": ["flying", "bug", "fire", "ice"], "half_damage_from": ["normal", "flying", "poison", "fire"], "half_damage_to": ["fighting", "ground", "steel"], "no_damage_from": [], "no_damage_to": []}

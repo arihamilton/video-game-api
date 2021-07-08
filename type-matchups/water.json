@@ -1,0 +1,1 @@
+{"double_damage_from": ["grass", "electric"], "double_damage_to": ["ground", "rock", "fire"], "half_damage_from": ["steel", "fire", "water", "ice"], "half_damage_to": ["water", "grass", "dragon"], "no_damage_from": [], "no_damage_to": []}
