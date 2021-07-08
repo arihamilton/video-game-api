@@ -15,7 +15,7 @@ def init():
     #summoner_name = "LH0"
     #summoner_region = "na1"
     summoner_region = input("Your Region: ")
-    api_key = 'RGAPI-96982efc-3da2-4ecd-a157-6046211d8b92'
+    api_key = 'RGAPI-4842d23e-2258-4b89-b112-9e5fcb41a024'
     get_request_response = initial_get_request(summoner_name,summoner_region,api_key)
     summoner_id = get_summoner_id(get_request_response)
     graph(champion_mastery(summoner_name,summoner_region,summoner_id,api_key))
