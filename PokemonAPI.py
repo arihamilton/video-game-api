@@ -163,42 +163,40 @@ t2_list = get_pokes_from_json(t2)
 combination = compare_poke_lists(t_list, t2_list)
 
 pokes = get_pokemon_in_list(combination)
-for pokemon in pokes:
-  print(pokemon)
 
 ##################### Figure creation, tidy up code later #####################
 
-poke = pokes[0]
-fig = go.Figure()
+def create_chart_from_pokemon(pokemon):
+    stats = pokemon[3]
+    x = []
+    y = []
+    
+    for items in stats:
+      x.append(items[0])
+      y.append(items[1])
 
-stats = poke[3]
-x = []
-y = []
-for items in stats:
-  x.append(items[0])
-  y.append(items[1])
+    colors = ['crimson', 'coral', 'moccasin', 'lightskyblue', 'lightgreen', 'lightpink']  
 
-colors = ['crimson', 'coral', 'moccasin', 'lightskyblue', 'lightgreen', 'lightpink']  
-  
-fig.add_trace(go.Bar(x=x, y=y, marker_color=colors))
+    fig.add_trace(go.Bar(x=x, y=y, marker_color=colors))
 
-# Add image
-img = poke[2]
-fig.add_layout_image(
-    dict(
-        source=img,
-        xref="paper", yref="paper",
-        x=1, y=1.05,
-        sizex=0.2, sizey=0.2,
-        xanchor="right", yanchor="bottom"
+    # Add image
+    img = pokemon[2]
+    fig.add_layout_image(
+        dict(
+            source=img,
+            xref="paper", yref="paper",
+            x=1, y=1.05,
+            sizex=0.2, sizey=0.2,
+            xanchor="right", yanchor="bottom"
+        )
     )
-)
 
-name = poke[1]
-# Update layout
-fig.update_yaxes(range=[0, 255])
-fig.update_layout(title=(name))
-fig.write_html('' + name + '.html') # export to HTML file
+    name = pokemon[1]
+    # Update layout
+    fig.update_yaxes(range=[0, 255])
+    fig.update_layout(title=(name))
+    fig.write_html('' + name + '.html') # export to HTML file
 
-
-#blah
+for pokemon in pokes:
+  print(pokemon)
+  create_chart_from_pokemon(pokemon)
