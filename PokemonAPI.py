@@ -60,11 +60,32 @@ def get_pokes_from_json(r):
     if 'pokemon' in dict:
       list = dict['pokemon']
       for pokes in list:
-        pokemon_list.append(pokes['pokemon'])
+        if not 'gmax' in str(pokes['pokemon']['name']):
+          pokemon_list.append(pokes['pokemon'])
   except:
     print("no pokemon in list")
   finally:
     return pokemon_list
+  
+# def get_type(type_name):
+#   type_name = type_name.lower()
+#   r = requests.get('https://pokeapi.co/api/v2/type/' + str(type_name) + '/')
+#   response_code = r.status_code
+#   #print(response_code)
+#   if response_code == 200:
+#     dict = r.json()
+#     if 'damage_relations' in dict:
+#       damage_dict = dict['damage_relations']
+#       new_dmg_dict = {}
+#       for matchup in damage_dict.items():
+#         types_list = []
+#         for types in matchup[1]:
+#           nm = types['name']
+#           types_list.append(str(nm))
+#         new_dmg_dict[str(matchup[0])] = types_list
+#         print(new_dmg_dict)
+#       # Save the dictionary into a file:
+#       json.dump(new_dmg_dict, open( type_name + ".json", 'w' ))
 
 # 6. Let the user use the above functions to generate a team and put this information into a new table
 
@@ -108,7 +129,10 @@ def get_team_inputs():
       
       while not valid_type2:
           type_2 = input("Enter Type 2: ")
-          if valid_type_input(type_2):
+          if type_2 == 'none':
+            valid_type2 = True
+            valid = True
+          elif valid_type_input(type_2):
               valid_type2 = True
               valid = True
           else:
@@ -138,28 +162,23 @@ def get_pokemon_in_list(list):
           stat_name = item['stat']['name']
           stat_value = item['base_stat']
           stats.append([stat_name, stat_value])
+        type_dict = dict['types']
+        poke_type_list = []
+        for items in type_dict:
+          type = items['type']
+          type_name = type['name']
+          poke_type_list.append(str(type_name))
 
-    poke_list.append([poke_id, poke_name, sprite, stats])
+        poke_list.append([poke_id, poke_name, sprite, poke_type_list])
     
   return poke_list
 
 
 TYPES = ['normal', 'fire', 'water', 'grass', 'electric', 'ice', 'fighting', 'poison', 'ground', 
-         'flying', 'psychic', 'bug', 'rock', 'ghost', 'dark', 'dragon', 'steel', 'fairy', 'none']
+         'flying', 'psychic', 'bug', 'rock', 'ghost', 'dark', 'dragon', 'steel', 'fairy']
 
 #requests_cache.install_cache('pokemon_cache', backend='sqlite', expire_after=3600)
 
-user_input = get_team_inputs()
-
-t = get_by_type(user_input[0])
-t_list = get_pokes_from_json(t)
-
-t2 = get_by_type(user_input[1])
-t2_list = get_pokes_from_json(t2)
-
-combination = compare_poke_lists(t_list, t2_list)
-
-pokes = get_pokemon_in_list(combination)
 
 ##################### Figure creation, tidy up code later #####################
 
@@ -198,11 +217,25 @@ def create_chart_from_pokemon(pokemon):
       fig.update_layout(title=(name))
       fig.write_html('' + name + '.html') # export to HTML file
 
-for pokemon in pokes:
-  print(pokemon)
-  create_chart_from_pokemon(pokemon)
-  
 
+def ask_user_for_team():
+  valid = False
+  
+  team_name = input("Enter your team name! ")
+      
+user_input = get_team_inputs()
+
+t = get_by_type(user_input[0])
+t_list = get_pokes_from_json(t)
+
+t2 = get_by_type(user_input[1])
+t2_list = get_pokes_from_json(t2)
+
+combination = compare_poke_lists(t_list, t2_list)
+
+pokes = get_pokemon_in_list(combination)
+print(pokes)
+  
 #r = requests.get('https://pokeapi.co/api/v2/type/fire')
 #dict = r.json()
 #print(dict)
