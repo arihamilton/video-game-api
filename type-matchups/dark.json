@@ -1,0 +1,1 @@
+{"double_damage_from": ["fighting", "bug", "fairy"], "double_damage_to": ["ghost", "psychic"], "half_damage_from": ["ghost", "dark"], "half_damage_to": ["fighting", "dark", "fairy"], "no_damage_from": ["psychic"], "no_damage_to": []}
