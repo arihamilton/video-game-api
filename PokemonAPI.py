@@ -153,7 +153,7 @@ TYPES = ['normal', 'fire', 'water', 'grass', 'electric', 'ice', 'fighting', 'poi
 #requests_cache.install_cache('pokemon_cache', backend='sqlite', expire_after=3600)
 
 user_input = get_user_input()
-print(user_input)
+
 t = get_by_type(user_input[0])
 t_list = get_pokes_from_json(t)
 
@@ -196,6 +196,7 @@ fig.add_layout_image(
 
 name = poke[1]
 # Update layout
+fig.update_yaxes(range=[0, 255])
 fig.update_layout(title=(name))
 fig.write_html('' + name + '.html') # export to HTML file
 
