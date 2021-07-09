@@ -7,21 +7,8 @@ import matplotlib.pyplot as plt
 # Place information into JSON file
 # Database that jawn 
 # Graphs and shit
+   
 
-def init():
-    # get summoner region and name via input
-    # Maybe add a function to parse the response and ensure a correct region is collected
-    summoner_name = input("League Summoner Name: ")
-    #summoner_name = "LH0"
-    #summoner_region = "na1"
-    summoner_region = input("Your Region: ")
-    api_key = 'RGAPI-4842d23e-2258-4b89-b112-9e5fcb41a024'
-    get_request_response = initial_get_request(summoner_name,summoner_region,api_key)
-    summoner_id = get_summoner_id(get_request_response)
-    graph(champion_mastery(summoner_name,summoner_region,summoner_id,api_key))
-    plt.show()
-    
-    
 def initial_get_request(_name,_region,_api):
     url = "https://"+_region+".api.riotgames.com/lol/summoner/v4/summoners/by-name/"+_name+"?api_key="+_api
 
@@ -89,4 +76,39 @@ def name_column(_data_):
     return _data_                 
 
 
+# get summoner region and name via input 
+# Maybe add a function to parse the response and ensure a correct region is collected
+def CheckSummonerName(a_name):
+    if a_name == '':
+        print('please put a valid summoner name')
+        summoners_name = input("League Summoner Name: ")
+        if summoners_name =='':
+            CheckSummonerName(summoners_name)
+        else:
+            return str(summoners_name)
+    else:
+        return str(a_name)
+def CheckSummonerRegion(a_region):   
+    if a_region == '':
+        print('please put a valid summoner region')
+        print('NA(na1), EUNE(eun1), EUW(euw1), LAN(la1), LAS(la2), OCE(OCE/OC1), RU(RU1), TR(TR1), JP(JP1), KR(KR):')
+        summoners_region = input("Your Region: ")
+        if summoners_region == '':
+            CheckSummonerRegion(summoners_region)
+        else:
+            return str(summoners_region)
+    else:
+        return str(a_region)
 
+summoner_name = input("League Summoner Name: ")
+checked_summoner_name = CheckSummonerName(summoner_name)
+
+summoner_region = input("Your Region: ")
+checked_summoner_region = CheckSummonerRegion(summoner_region)
+api_key = 'RGAPI-9f1634b9-609c-4ccc-b009-b29791662ba3' 
+
+get_request_response = initial_get_request(str(checked_summoner_name),str(checked_summoner_region),str(api_key))
+summoner_id = get_summoner_id(get_request_response)
+champion_points = champion_mastery(str(checked_summoner_name),str(checked_summoner_region),str(summoner_id),api_key)
+graph(champion_points)
+plt.show()
