@@ -255,7 +255,7 @@ def check_vulnerabilites(pokemon_team):
         counter = False
         if type[1] >= 2:
             # Check if team has a pokemon that counters the type.
-            type_dict = json.load( open("type-matchups/" + type[0] + ".json" ) )
+            type_dict = json.load(open("type-matchups/" + type[0] + ".json"))
             double_damage_from = type_dict['double_damage_from']
             for item in double_damage_from:
                 for poke in pokemon_team:
@@ -298,48 +298,48 @@ def ask_user_for_team():
         valid = False
 
         while not valid:
-          user_team_input = get_team_inputs()
+            user_team_input = get_team_inputs()
 
-          t = get_by_type(user_team_input[0])
-          t_list = get_pokes_from_json(t)
+            t = get_by_type(user_team_input[0])
+            t_list = get_pokes_from_json(t)
 
-          t2 = get_by_type(user_team_input[1])
-          t2_list = get_pokes_from_json(t2)
+            t2 = get_by_type(user_team_input[1])
+            t2_list = get_pokes_from_json(t2)
 
-          combination = compare_poke_lists(t_list, t2_list)
+            combination = compare_poke_lists(t_list, t2_list)
 
-          # If no pokemon have this type combination...
-          if not combination:
-              print("No pokemon have this type combination! Please try again. ")
-          else:
+            # If no pokemon have this type combination...
+            if not combination:
+                print("No pokemon have this type combination! Please try again. ")
+            else:
 
-              # show pokemon stats table and generate stats chart for user comparison
-              # ask the user to choose a pokemon.
-              # add chosen pokemon to list.
-              print("Here is a list of results! Please choose which Pokemon you would like to add to your team. \n")
-              pokes = get_pokemon_in_list(combination)
-              pokemon_names = []
-              poke_choices = []
-              # Print out stats chart for each Pokemon
-              for poke in pokes:
-                  print(generate_stat_table(poke))
-                  print('\n')
-                  pokemon_names.append(str(poke[1]))
-                  poke_choices.append( [str(poke[1]), poke[4]] )
+                # show pokemon stats table and generate stats chart for user comparison
+                # ask the user to choose a pokemon.
+                # add chosen pokemon to list.
+                print("Here is a list of results! Please choose which Pokemon you would like to add to your team. \n")
+                pokes = get_pokemon_in_list(combination)
+                pokemon_names = []
+                poke_choices = []
+                # Print out stats chart for each Pokemon
+                for poke in pokes:
+                    print(generate_stat_table(poke))
+                    print('\n')
+                    pokemon_names.append(str(poke[1]))
+                    poke_choices.append( [str(poke[1]), poke[4]] )
 
-              poke_chosen = False
+                poke_chosen = False
 
-              while not poke_chosen:
-                  selected_poke = input("Enter the Pokemon you would like to select: ")
-                  if selected_poke not in pokemon_names:
-                      print("Name is not in list of available choices. Please try again.")
-                  else:
-                      index = pokemon_names.index(selected_poke)
-                      pokemon_team.append([num, selected_poke, poke_choices[index][1]])
-                      poke_chosen = True
+                while not poke_chosen:
+                    selected_poke = input("Enter the Pokemon you would like to select: ")
+                    if selected_poke not in pokemon_names:
+                        print("Name is not in list of available choices. Please try again.")
+                    else:
+                        index = pokemon_names.index(selected_poke)
+                        pokemon_team.append([num, selected_poke, poke_choices[index][1]])
+                        poke_chosen = True
 
-              valid = True
-              num = num + 1
+                valid = True
+                num = num + 1
 
     df = list_to_df(pokemon_team)
     create_database_table(df, team_name)
