@@ -1,3 +1,4 @@
+Name: unittest
 on: push
 
 jobs:
@@ -16,4 +17,4 @@ jobs:
 
       - name: Test with unittest
         run: |
-          python3 -m unittest unittest.py
+          python3 -m unittest LOL_unittest.py
