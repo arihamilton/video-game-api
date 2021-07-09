@@ -16,6 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `cool`
+--
+
+DROP TABLE IF EXISTS `cool`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cool` (
+  `id` bigint(20) DEFAULT NULL,
+  `pokemon` text DEFAULT NULL,
+  `type_1` text DEFAULT NULL,
+  `type_2` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cool`
+--
+
+LOCK TABLES `cool` WRITE;
+/*!40000 ALTER TABLE `cool` DISABLE KEYS */;
+INSERT INTO `cool` VALUES (1,'darmanitan-zen-galar','ice','fire'),(2,'volcanion','fire','water'),(3,'mamoswine','ice','ground'),(4,'rotom-mow','electric','grass'),(5,'yveltal','dark','flying'),(6,'aerodactyl','rock','flying');
+/*!40000 ALTER TABLE `cool` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `dancers`
 --
 
@@ -191,4 +216,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-09  4:18:37
+-- Dump completed on 2021-07-09  4:21:12

@@ -363,5 +363,5 @@ def ask_user_for_team():
 #dict = r.json()
 #print(dict)
 
-ask_user_for_team()
+#ask_user_for_team()
 #print(get_by_type('').json())

@@ -1,6 +1,6 @@
 # main function
 from LeagueOfLegendsAPI import init
-#import PokemonAPI
+from PokemonAPI import *
 
 print('Welcome to our video game information finder')
 print('Please select your game of choice: ')
@@ -11,4 +11,4 @@ title_screen = input('')
 if int(title_screen) == 1:    
     init()
 elif int(title_screen) == 2:
-    print('pokenmo')
+    ask_user_for_team()
