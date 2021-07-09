@@ -230,7 +230,7 @@ def check_vulnerabilites(pokemon_team):
         type_2 = type_list[1]
 
         # Go through types and calculate weaknesses.
-        type_dict = json.load(open( type_1 + ".json" ))
+        type_dict = json.load(open("type-matchups/" + type_1 + ".json"))
         double_damage_from = type_dict['double_damage_from']
         half_damage_from = type_dict['half_damage_from']
 
@@ -240,7 +240,7 @@ def check_vulnerabilites(pokemon_team):
             matchups[items] = (matchups[items] * 0.5)
 
         if type_2 != type_1:
-            type_dict = json.load( open( type_1 + ".json" ) )
+            type_dict = json.load(open("type-matchups/" + type_2 + ".json"))
             double_damage_from = type_dict['double_damage_from']
             half_damage_from = type_dict['half_damage_from']
 
@@ -255,7 +255,7 @@ def check_vulnerabilites(pokemon_team):
         counter = False
         if type[1] >= 2:
             # Check if team has a pokemon that counters the type.
-            type_dict = json.load( open( type[0] + ".json" ) )
+            type_dict = json.load( open("type-matchups/" + type[0] + ".json" ) )
             double_damage_from = type_dict['double_damage_from']
             for item in double_damage_from:
                 for poke in pokemon_team:
@@ -363,5 +363,5 @@ def ask_user_for_team():
 #dict = r.json()
 #print(dict)
 
-#ask_user_for_team()
+ask_user_for_team()
 #print(get_by_type('').json())
