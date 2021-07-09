@@ -22,18 +22,18 @@
   * sudo pip3 install pandas
   * sudo pip3 install plotly
 ​
-### Usage?
+### Usage
 ​
-*\ python APIScraper \*
-*\ python Plotting library: Pandas/Matplotlib \*
-*\ Locally hosted MariaDB server \*
+  * \* python APIScraper \*
+  * \* python Plotting library: Pandas/Matplotlib \*
+  * \* Locally hosted MariaDB server \*
 ​
 ### Contact Information
 ​
 Name         | Email
 ------------ | -------------------------
-Dave       | dn789@cairn.edu
-Ari       | alh33286@uga.edu
+Dave         | dn789@cairn.edu
+Ari          | alh33286@uga.edu
 ​
 ### License
 ​
