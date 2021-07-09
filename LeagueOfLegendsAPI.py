@@ -2,12 +2,9 @@ import requests
 import json
 import pandas as pd
 import matplotlib.pyplot as plt
-# Connect to the League API
-# Obtain information with a get requests
-# Place information into JSON file
-# Database that jawn 
-# Graphs and shit
-   
+
+# Be sure to get an API Key before running the application  
+api_key = 'RGAPI-9f1634b9-609c-4ccc-b009-b29791662ba3'
 
 def initial_get_request(_name,_region,_api):
     url = "https://"+_region+".api.riotgames.com/lol/summoner/v4/summoners/by-name/"+_name+"?api_key="+_api
@@ -99,16 +96,15 @@ def CheckSummonerRegion(a_region):
             return str(summoners_region)
     else:
         return str(a_region)
+def init():
+    summoner_name = input("League Summoner Name: ")
+    checked_summoner_name = CheckSummonerName(summoner_name)
 
-summoner_name = input("League Summoner Name: ")
-checked_summoner_name = CheckSummonerName(summoner_name)
+    summoner_region = input("Your Region: ")
+    checked_summoner_region = CheckSummonerRegion(summoner_region)
 
-summoner_region = input("Your Region: ")
-checked_summoner_region = CheckSummonerRegion(summoner_region)
-api_key = 'RGAPI-9f1634b9-609c-4ccc-b009-b29791662ba3' 
-
-get_request_response = initial_get_request(str(checked_summoner_name),str(checked_summoner_region),str(api_key))
-summoner_id = get_summoner_id(get_request_response)
-champion_points = champion_mastery(str(checked_summoner_name),str(checked_summoner_region),str(summoner_id),api_key)
-graph(champion_points)
-plt.show()
+    get_request_response = initial_get_request(str(checked_summoner_name),str(checked_summoner_region),str(api_key))
+    summoner_id = get_summoner_id(get_request_response)
+    champion_points = champion_mastery(str(checked_summoner_name),str(checked_summoner_region),str(summoner_id),api_key)
+    graph(champion_points)
+    plt.show()
