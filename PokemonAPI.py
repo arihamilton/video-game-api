@@ -38,7 +38,7 @@ def get_pokes_from_json(r):
       if 'pokemon' in dict:
         list = dict['pokemon']
         for pokes in list:
-          if not 'gmax' in str(pokes['pokemon']['name']):
+          if 'gmax' not in str(pokes['pokemon']['name']):
             pokemon_list.append(pokes['pokemon'])
     except:
       print("no pokemon in list")
@@ -148,7 +148,7 @@ TYPES = ['normal', 'fire', 'water', 'grass', 'electric', 'ice', 'fighting', 'poi
          'flying', 'psychic', 'bug', 'rock', 'ghost', 'dark', 'dragon', 'steel', 'fairy']
 
 
-##################### Figure creation, tidy up code later #####################
+# Figure creation
 
 # def create_chart_from_pokemon(pokemon):
 
@@ -222,7 +222,7 @@ def check_vulnerabilites(pokemon_team):
         matchups[type] = 1
     #iterate through team list.
     #for each poke in team, go through their 2 types and multiple dict key by their weaknesses.
-      #if type_2 == type_1, don't do it
+        #if type_2 == type_1, don't do it
 
     for poke in pokemon_team:
         type_list = poke[2]
@@ -230,7 +230,7 @@ def check_vulnerabilites(pokemon_team):
         type_2 = type_list[1]
 
         # Go through types and calculate weaknesses.
-        type_dict = json.load( open( type_1 + ".json" ) )
+        type_dict = json.load(open( type_1 + ".json" ))
         double_damage_from = type_dict['double_damage_from']
         half_damage_from = type_dict['half_damage_from']
 
@@ -363,7 +363,5 @@ def ask_user_for_team():
 #dict = r.json()
 #print(dict)
 
-
-
-ask_user_for_team()
+#ask_user_for_team()
 #print(get_by_type('').json())

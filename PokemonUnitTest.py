@@ -59,7 +59,7 @@ class PokemonUnitTest(unittest.TestCase):
     def test_generate_suggestion(self):
       
         TYPES = ['normal', 'fire', 'water', 'grass', 'electric', 'ice', 'fighting', 'poison', 'ground', 
-         'flying', 'psychic', 'bug', 'rock', 'ghost', 'dark', 'dragon', 'steel', 'fairy']
+            'flying', 'psychic', 'bug', 'rock', 'ghost', 'dark', 'dragon', 'steel', 'fairy']
       
         # No suggestion generated
         self.assertEqual(generate_suggestion('flame', TYPES), -1)
