@@ -1,25 +1,34 @@
-### What is this?
-This `README.md` file is auto-created for all new projects.
+### Video game states checker
+​
+> This software retreives information for a user depending on the video game of Their choice; Current implemention has APIs for two games up and running:
+1. League of Legends
+2. Pokemon
+​
+### Installation
+​
+> in order to first use the League of legends API, you must go to the riot games developer portal and obtain a develompent api key, which you will then insert into line 7 of this file [here](LeagueOfLegendsAPI.py)
 
-### Why am I here?
-This file opens automatically when you open a project. 
-
-If you do not create Guides, this `README.md` will be what automatically opens for students. You can edit this file by clicking on the pencil icon in the upper right corner.
-
-### How do I get started with Codio?
-Use this [Onboarding Guide](https://codio.com/home/starter-packs/2ae8501b-e5f7-4b07-8e9f-adb155fc6d10) for an interactive tutorial through the main features of Codio. Click on the link, click **Use Pack** and then click **Create** to add it to your projects.
-
-### How do I close this file?
-At the top of your workspace you will see tabs for each open file. Click the x on the right hand side of the tab that says **README.md**.
-![readMeTab](https://global.codio.com/platform/readme.resources/readMeTab.png)
-
-### I expected to see or edit learning materials.
-Select **Tools->Guide->Play** to view the Guide for this project.
-![playGuide](https://global.codio.com/platform/readme.resources/playGuide.png)
-
-Click on the **Open Guides Editor** icon to edit the Guide.
-![guideEdit](https://global.codio.com/platform/readme.resources/guideEdit.png)
-
-### How do I delete this file?
-To delete this `README.md` file, right-click (ctrl-click on a Mac) on the file name in the file list.
-![fileTree](https://global.codio.com/platform/readme.resources/fileTree.png)
+* Runs in Python 2.7>
+* Run commands:
+  * sudo pip3 install requests
+  * sudo pip3 install json
+  * sudo pip3 install pandas
+  * sudo pip3 install matplotlib.pyplot
+​
+### Usage?
+​
+\* python APIScraper \*
+\* python Ploting library: Pandas/Matplotlib \*
+\* Locally hosted MariaDB server \*
+​
+### Contact Information
+​
+Name         | Email
+------------ | -------------------------
+Dave       | dn789@cairn.edu
+Ari       | Ari@ari.ari
+​
+### License
+​
+[GNU GPL](license)
+![badge0](https://img.shields.io/static/v1?label=<License>&message=GNU>&color=<BLUE>)

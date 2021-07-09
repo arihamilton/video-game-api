@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Be sure to get an API Key before running the application  
-api_key = 'RGAPI-9f1634b9-609c-4ccc-b009-b29791662ba3'
+api_key = ''
 
 def initial_get_request(_name,_region,_api):
     url = "https://"+_region+".api.riotgames.com/lol/summoner/v4/summoners/by-name/"+_name+"?api_key="+_api
