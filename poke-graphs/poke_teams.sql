@@ -37,6 +37,29 @@ LOCK TABLES `dancers` WRITE;
 INSERT INTO `dancers` VALUES (1,'talonflame'),(2,'aurorus'),(3,'reshiram'),(4,'arctozolt'),(5,'palkia'),(6,'guzzlord');
 /*!40000 ALTER TABLE `dancers` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `team1`
+--
+
+DROP TABLE IF EXISTS `team1`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `team1` (
+  `id` bigint(20) DEFAULT NULL,
+  `pokemon` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `team1`
+--
+
+LOCK TABLES `team1` WRITE;
+/*!40000 ALTER TABLE `team1` DISABLE KEYS */;
+INSERT INTO `team1` VALUES (1,'charizard'),(2,'aurorus'),(3,'amaura'),(4,'carkol'),(5,'rotom-heat'),(6,'walrein');
+/*!40000 ALTER TABLE `team1` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -47,4 +70,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-08 19:57:31
+-- Dump completed on 2021-07-08 21:05:51

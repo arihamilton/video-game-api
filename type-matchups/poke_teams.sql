@@ -39,6 +39,54 @@ INSERT INTO `dancers` VALUES (1,'talonflame'),(2,'aurorus'),(3,'reshiram'),(4,'a
 UNLOCK TABLES;
 
 --
+-- Table structure for table `sdfs`
+--
+
+DROP TABLE IF EXISTS `sdfs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sdfs` (
+  `id` bigint(20) DEFAULT NULL,
+  `pokemon` text DEFAULT NULL,
+  `type` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sdfs`
+--
+
+LOCK TABLES `sdfs` WRITE;
+/*!40000 ALTER TABLE `sdfs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sdfs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sdfsf`
+--
+
+DROP TABLE IF EXISTS `sdfsf`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sdfsf` (
+  `id` bigint(20) DEFAULT NULL,
+  `pokemon` text DEFAULT NULL,
+  `type_1` text DEFAULT NULL,
+  `type_2` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sdfsf`
+--
+
+LOCK TABLES `sdfsf` WRITE;
+/*!40000 ALTER TABLE `sdfsf` DISABLE KEYS */;
+INSERT INTO `sdfsf` VALUES (1,'incineroar','fire','dark'),(2,'emboar','fire','fighting'),(3,'crabominable','fighting','ice'),(4,'rotom-mow','electric','grass'),(5,'pangoro','fighting','dark'),(6,'drapion','poison','dark');
+/*!40000 ALTER TABLE `sdfsf` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `team`
 --
 
@@ -83,6 +131,31 @@ LOCK TABLES `team1` WRITE;
 INSERT INTO `team1` VALUES (1,'charizard'),(2,'aurorus'),(3,'amaura'),(4,'carkol'),(5,'rotom-heat'),(6,'walrein');
 /*!40000 ALTER TABLE `team1` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `team3`
+--
+
+DROP TABLE IF EXISTS `team3`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `team3` (
+  `id` bigint(20) DEFAULT NULL,
+  `pokemon` text DEFAULT NULL,
+  `type_1` text DEFAULT NULL,
+  `type_2` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `team3`
+--
+
+LOCK TABLES `team3` WRITE;
+/*!40000 ALTER TABLE `team3` DISABLE KEYS */;
+INSERT INTO `team3` VALUES (1,'arctovish','water','ice'),(2,'incineroar','fire','dark'),(3,'emboar','fire','fighting'),(4,'ludicolo','water','grass'),(5,'stunfisk','ground','electric'),(6,'rhyperior','ground','rock');
+/*!40000 ALTER TABLE `team3` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -93,4 +166,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-09  2:27:23
+-- Dump completed on 2021-07-09  3:49:45
